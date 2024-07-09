@@ -27,7 +27,22 @@ const getAllBooks = async (req, res) => {
   }
 };
 
+const delBook = async (req, res) => {
+  try {
+    const deleteBooks = await Book.destroy({
+      where: {
+        title: req.body.title,
+      },
+    });
+
+    res.status(200).json({ message: "success", deleteBooks: deleteBooks });
+  } catch (error) {
+    res.status(501).json({ message: error.message, error: error });
+  }
+};
+
 module.exports = {
   addBook: addBook,
   getAllBooks: getAllBooks,
+  delBook: delBook,
 };

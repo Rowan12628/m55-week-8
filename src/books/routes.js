@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const bookRouter = Router();
 
-const { addBook, getAllBooks } = require("./controllers");
+const { addBook, getAllBooks, delBook } = require("./controllers");
 
 // "http://localhost:5001/books/test" the route test is mounted on the route books
 bookRouter.get("/test", async (req, res) => {
@@ -12,5 +12,7 @@ bookRouter.get("/test", async (req, res) => {
 bookRouter.post("/addBook", addBook);
 
 bookRouter.get("/getAllBooks", getAllBooks);
+
+bookRouter.delete("/delBook", delBook);
 
 module.exports = bookRouter;
