@@ -4,17 +4,24 @@ const express = require("express");
 const port = process.env.PORT || 5001;
 
 const Book = require("./books/model");
+const Author = require("./authors/model");
 
 const bookRouter = require("./books/routes");
+const authorRouter = require("./authors/routes");
 
 const app = express();
 
 app.use(express.json());
 
 app.use("/books", bookRouter);
+app.use("/authors", authorRouter);
 
-const syncTables = () => {
+const syncTables1 = () => {
   Book.sync();
+};
+
+const syncTables2 = () => {
+  Author.sync();
 };
 
 app.get("/health", (req, res) => {
@@ -22,6 +29,7 @@ app.get("/health", (req, res) => {
 });
 
 app.listen(port, () => {
-  syncTables();
+  syncTables1();
+  syncTables2();
   console.log(`server is listening on port ${port}`);
 });
