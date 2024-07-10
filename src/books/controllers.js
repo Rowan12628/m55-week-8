@@ -29,9 +29,10 @@ const getAllBooks = async (req, res) => {
 
 const getByAuthor = async (req, res) => {
   try {
+    console.log("req.params: ", req.params);
     const bookByAuthor = await Book.findOne({
       where: {
-        author: req.body.author,
+        author: req.params.author,
       },
     });
 

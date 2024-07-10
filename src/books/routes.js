@@ -20,7 +20,7 @@ bookRouter.post("/addBook", addBook);
 
 bookRouter.get("/getAllBooks", getAllBooks);
 
-bookRouter.get("/getByAuthor", getByAuthor);
+bookRouter.get("/getByAuthor/:author", getByAuthor);
 
 bookRouter.put("/updateByTitle", updateByTitle);
 
