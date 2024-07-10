@@ -13,7 +13,7 @@ const addBook = async (req, res) => {
 
     res.status(201).json({ message: "success", book: book });
   } catch (error) {
-    res.status(501).json({ message: error.message, error: error });
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
@@ -23,7 +23,7 @@ const getAllBooks = async (req, res) => {
 
     res.status(200).json({ message: "success", books: books });
   } catch (error) {
-    res.status(501).json({ message: error.message, error: error });
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
@@ -37,7 +37,19 @@ const delBook = async (req, res) => {
 
     res.status(200).json({ message: "success", deleteBooks: deleteBooks });
   } catch (error) {
-    res.status(501).json({ message: error.message, error: error });
+    res.status(500).json({ message: error.message, error: error });
+  }
+};
+
+const delAllBooks = async (req, res) => {
+  try {
+    const deleteAllBooks = await Book.truncate();
+
+    res
+      .status(200)
+      .json({ message: "success", deleteAllBooks: deleteAllBooks });
+  } catch (error) {
+    res.status(500).json({ message: error.message, error: error });
   }
 };
 
@@ -45,4 +57,5 @@ module.exports = {
   addBook: addBook,
   getAllBooks: getAllBooks,
   delBook: delBook,
+  delAllBooks: delAllBooks,
 };
