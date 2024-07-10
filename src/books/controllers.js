@@ -27,6 +27,20 @@ const getAllBooks = async (req, res) => {
   }
 };
 
+const getByAuthor = async (req, res) => {
+  try {
+    const bookByAuthor = await Book.findOne({
+      where: {
+        author: req.body.author,
+      },
+    });
+
+    res.status(200).json({ message: "success", bookByAuthor: bookByAuthor });
+  } catch (error) {
+    res.status(500).json({ message: error.message, error: error });
+  }
+};
+
 const delBook = async (req, res) => {
   try {
     const deleteBooks = await Book.destroy({
@@ -56,6 +70,7 @@ const delAllBooks = async (req, res) => {
 module.exports = {
   addBook: addBook,
   getAllBooks: getAllBooks,
+  getByAuthor: getByAuthor,
   delBook: delBook,
   delAllBooks: delAllBooks,
 };
