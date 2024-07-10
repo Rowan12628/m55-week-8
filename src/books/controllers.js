@@ -41,6 +41,24 @@ const getByAuthor = async (req, res) => {
   }
 };
 
+const updateByTitle = async (req, res) => {
+  try {
+    const filterBook = {
+      title: req.body.title,
+    };
+
+    const updateBook = {
+      [req.body.updateKey]: req.body.updateValue,
+    };
+
+    const titleUpdate = await Book.update(updateBook, { where: filterBook });
+
+    res.status(200).json({ message: "success", titleUpdate: titleUpdate });
+  } catch (error) {
+    res.status(500).json({ message: error.message, error: error });
+  }
+};
+
 const delBook = async (req, res) => {
   try {
     const deleteBooks = await Book.destroy({
@@ -71,6 +89,7 @@ module.exports = {
   addBook: addBook,
   getAllBooks: getAllBooks,
   getByAuthor: getByAuthor,
+  updateByTitle: updateByTitle,
   delBook: delBook,
   delAllBooks: delAllBooks,
 };

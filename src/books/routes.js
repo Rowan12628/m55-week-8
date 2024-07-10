@@ -5,6 +5,7 @@ const {
   addBook,
   getAllBooks,
   getByAuthor,
+  updateByTitle,
   delBook,
   delAllBooks,
 } = require("./controllers");
@@ -20,6 +21,8 @@ bookRouter.post("/addBook", addBook);
 bookRouter.get("/getAllBooks", getAllBooks);
 
 bookRouter.get("/getByAuthor", getByAuthor);
+
+bookRouter.put("/updateByTitle", updateByTitle);
 
 bookRouter.delete("/delBook", delBook);
 
