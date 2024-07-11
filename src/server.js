@@ -16,12 +16,10 @@ app.use(express.json());
 app.use("/books", bookRouter);
 app.use("/authors", authorRouter);
 
-const syncTables1 = () => {
+const syncTables = () => {
   Book.sync();
-};
-
-const syncTables2 = () => {
   Author.sync();
+  // Model.sync({alter: true})
 };
 
 app.get("/health", (req, res) => {
@@ -29,7 +27,6 @@ app.get("/health", (req, res) => {
 });
 
 app.listen(port, () => {
-  syncTables1();
-  syncTables2();
+  syncTables();
   console.log(`server is listening on port ${port}`);
 });

@@ -5,16 +5,9 @@ const sequelize = require("../db/connection");
 const Author = sequelize.define(
   "Author",
   {
-    firstName: {
+    authorName: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    middleName: {
-      type: DataTypes.STRING,
-      defaultValue: null,
-    },
-    lastName: {
-      type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
     },
   },
