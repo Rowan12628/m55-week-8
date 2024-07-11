@@ -2,24 +2,23 @@ const { DataTypes } = require("sequelize");
 
 const sequelize = require("../db/connection");
 
-const Book = sequelize.define(
-  "Book",
+const Author = sequelize.define(
+  "Author",
   {
-    title: {
+    firstName: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
     },
-    author: {
+    middleName: {
       type: DataTypes.STRING,
-      defaultValue: "written by some author",
+      defaultValue: null,
     },
-    genre: {
+    lastName: {
       type: DataTypes.STRING,
-      defaultValue: "some genre",
+      allowNull: false,
     },
   },
   { timestamps: false }
 );
 
-module.exports = Book;
+module.exports = Author;
