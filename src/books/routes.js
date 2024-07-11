@@ -18,6 +18,7 @@ bookRouter.get("/test", async (req, res) => {
 //http://localhost:5001/books/addBook
 bookRouter.post("/addBook", addBook);
 
+//http://localhost:5001/books/getAllBooks
 bookRouter.get("/getAllBooks", getAllBooks);
 
 bookRouter.get("/getByAuthor/:author", getByAuthor);
