@@ -11,4 +11,4 @@ const addAuthor = async (req, res) => {
   }
 };
 
-module.exports = { addAuthor };
+module.exports = { addAuthor: addAuthor };
