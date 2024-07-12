@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 
+const cors = require("cors");
+
 const port = process.env.PORT || 5001;
 
 const Book = require("./books/model");
@@ -15,6 +17,8 @@ const app = express();
 
 app.use(express.json());
 
+app.use(cors());
+
 app.use("/books", bookRouter);
 app.use("/authors", authorRouter);
 app.use("/genres", genreRouter);
@@ -26,8 +30,8 @@ const syncTables = () => {
   Genre.hasMany(Book);
   Book.belongsTo(Genre);
 
-  Author.sync({ alter: true });
   Book.sync({ alter: true });
+  Author.sync({ alter: true });
   Genre.sync({ alter: true });
   // Model.sync({alter: true})
 };
