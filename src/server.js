@@ -24,15 +24,16 @@ app.use("/authors", authorRouter);
 app.use("/genres", genreRouter);
 
 const syncTables = () => {
+  Author.sync({ alter: true });
+  Genre.sync({ alter: true });
+  Book.sync({ alter: true });
+
   Author.hasMany(Book);
   Book.belongsTo(Author);
 
   Genre.hasMany(Book);
   Book.belongsTo(Genre);
 
-  Book.sync({ alter: true });
-  Author.sync({ alter: true });
-  Genre.sync({ alter: true });
   // Model.sync({alter: true})
 };
 
